@@ -9,6 +9,7 @@ canvas {
   position: absolute;
 }
 
+
 #main {
 	position: relative;
 	display: flex;
@@ -90,4 +91,19 @@ canvas {
 		justify-content: flex-start;
 	}
 	
+}
+
+.nav-main {
+	width: 100%;
+	height: 60px;
+	background-color: #FFF;
+	display: flex;
+	flex-wrap: wrap;
+	z-index: 1000;
+}
+
+.btn-toggle-nav {
+	width: 60px;
+	height: 100%;
+	background-color: #F98F39;
 }
