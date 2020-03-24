@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_192836) do
+ActiveRecord::Schema.define(version: 2020_03_24_000314) do
 
   create_table "actions", force: :cascade do |t|
     t.string "time"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_03_23_192836) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "grid_id"
+    t.integer "x"
+    t.integer "y"
+    t.integer "property"
   end
 
 end
