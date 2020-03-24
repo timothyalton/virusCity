@@ -1,5 +1,6 @@
 Grid.destroy_all
 Tile.destroy_all
+Person.destroy_all
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -19,5 +20,17 @@ size = 50
         Tile.create(x:row ,y:col, property: 0, grid_id: g1.id)
     end 
 end
+
+
+
+
+
+30.times do 
+    Person.create({
+      name: Faker::Name.name,
+      health: "healthy",
+      tile: Tile.all[rand(Tile.all.length)]
+    })
+  end
 
 
