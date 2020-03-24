@@ -27,7 +27,39 @@ let offsetY = 0
 let zoom = 1.0
 
 // the grid structure TC
-let tiles = Array.from(Array(size).keys()).map(row => Array.from(Array(size).keys()).map(col => { return { x: row, y: col, property: 0 } }))
+// let tiles = Array.from(Array(size).keys()).map(row => Array.from(Array(size).keys()).map(col => { return { x: row, y: col, property: 0 } }))
+fetch('http://localhost:3000/grids/5')
+    .then(res => res.json())
+    .then(grid => createGrid(grid))
+    // .then(grid => console.log(grid.tiles))
+
+
+let tiles = []
+
+function createGrid(grid) {
+    tiles = Array.from(Array(size).keys()).map(row => Array.from(Array(size).keys()).map(col => { return { x: row, y: col, property: 0 } }))
+    grid.tiles.forEach((tile) => tiles[tile.x][tile.y] = tile)
+}
+
+
+function setTile(tile) {
+    fetch(`http://localhost:3000/tiles/${tile.id}`, {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+                tile: tile
+            })
+        })
+        .then(res => res.json())
+        .then(tile => tiles[tile.x][tile.y] = tile)
+}
+
+
+
+
+
+
+
 
 
 
@@ -100,11 +132,9 @@ texture.onload = _ => {
 const click = e => {
     const pos = convertScreenToGrid(e.offsetX, e.offsetY)
     if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size) {
-
         tiles[pos.x][pos.y].property = (e.which === 3) ? 0 : tool[0] + tool[1] * 12
-
-
-        // redraw the entire grid
+            // redraw the entire grid
+        setTile(tiles[pos.x][pos.y])
         drawGrid()
         fg.clearRect(-width, -height, width * 2, height * 2)
     }
@@ -139,10 +169,10 @@ const scroll = (e) => {
             break;
 
         case 81:
-            zoom /= 2;
+            zoom /= 1.1;
             break;
         case 87:
-            zoom *= 2;
+            zoom *= 1.1;
             break;
 
             /*
@@ -289,6 +319,7 @@ persons = [
 addperson(3, 5)
 addperson(5, 4)
 addperson(6, 8)
+
 goToTile(persons[0], [20, 37])
 
 function drawPersons() {
@@ -322,13 +353,3 @@ function goToTile(person, destination) {
     }
 
 }
-
-
-fetch('http://localhost:3000/tiles')
-    .then(res => res.json())
-    .then(tiles => console.log(tiles))
-
-
-fetch('http://localhost:3000/grids/2')
-    .then(res => res.json())
-    .then(tiles => console.log(tiles))
