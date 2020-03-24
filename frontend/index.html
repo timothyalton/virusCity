@@ -17,7 +17,8 @@
     <meta name="Description" content="Isometric City Builder">
     <link rel="icon" href="favicon.png" sizes="256x256">
     <link rel="apple-touch-icon" href="favicon.png">
-    <title>IsoCity</title>
+	<title>IsoCity</title>
+	<link rel="stylesheet" href="css/resetstyle.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -27,9 +28,19 @@
 	<nav class="nav-main">
 		<div class="btn-toggle-nav"></div>
 		  <ul>
+			<li>Load New Simulation</li>
+		  <br/>
+			<li>Option</li>
 
 		  </ul>
 	</nav>
+
+	<aside class="nav-sidebar">
+		<form action="submit">
+			<label>Research Vaccine:</label>
+			<input type="text" placeholder="This will be a dropdown menu">
+		</form>
+	</aside>
 
 <section id="main">
 	<div id="tools"></div>
