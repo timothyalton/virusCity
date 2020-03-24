@@ -1,4 +1,5 @@
 class TilesController < ApplicationController
+    
     def index
         tiles = Tile.all  
         render json: tiles 
@@ -30,7 +31,10 @@ class TilesController < ApplicationController
 
 
     private 
+
     def tile_params 
         params.require(:tile).permit(:x, :y, :property)
     end 
+
+
 end

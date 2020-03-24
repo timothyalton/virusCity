@@ -3,6 +3,7 @@ class GridsController < ApplicationController
     def index 
         grids = Grid.all
     end
+    
     def show
         grid = Grid.find(params[:id])
         render json: grid
