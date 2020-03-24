@@ -399,3 +399,112 @@ No serializer found for resource: #<Tile id: 1, created_at: "2020-03-24 00:09:50
 Completed 200 OK in 48ms (Views: 46.7ms | ActiveRecord: 0.3ms | Allocations: 20100)
 
 
+Started GET "/tiles" for ::1 at 2020-03-23 21:16:25 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TilesController#index as */*
+  [1m[36mTile Load (0.5ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles"[0m
+Started GET "/grids/2" for ::1 at 2020-03-23 21:16:25 -0500
+  ↳ app/controllers/tiles_controller.rb:4:in `index'
+No serializer found for resource: #<Tile id: 1, created_at: "2020-03-24 00:09:50", updated_at: "2020-03-24 00:09:50", grid_id: 1, x: 6, y: 5, property: 3>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Tile::ActiveRecord_Relation (1.79ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 3160)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GridsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mGrid Load (0.6ms)[0m  [1m[34mSELECT "grids".* FROM "grids" WHERE "grids"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/grids_controller.rb:7:in `show'
+[active_model_serializers]   [1m[36mTile Load (0.3ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles" WHERE "tiles"."grid_id" = ?[0m  [["grid_id", 2]]
+[active_model_serializers]   ↳ app/controllers/grids_controller.rb:8:in `show'
+[active_model_serializers] No serializer found for resource: #<Tile id: 2, created_at: "2020-03-24 01:06:54", updated_at: "2020-03-24 01:06:54", grid_id: 2, x: 6, y: 23, property: 3>
+[active_model_serializers] Rendered GridSerializer with ActiveModelSerializers::Adapter::Attributes (5.1ms)
+Completed 200 OK in 10ms (Views: 5.7ms | ActiveRecord: 1.0ms | Allocations: 3089)
+
+
+Started GET "/tiles" for ::1 at 2020-03-23 21:17:03 -0500
+Processing by TilesController#index as */*
+  [1m[36mTile Load (0.3ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles"[0m
+  ↳ app/controllers/tiles_controller.rb:4:in `index'
+No serializer found for resource: #<Tile id: 1, created_at: "2020-03-24 00:09:50", updated_at: "2020-03-24 00:09:50", grid_id: 1, x: 6, y: 5, property: 3>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Tile::ActiveRecord_Relation (1.55ms)
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.3ms | Allocations: 2174)
+
+
+Started GET "/grids/2" for ::1 at 2020-03-23 21:17:03 -0500
+Processing by GridsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mGrid Load (0.1ms)[0m  [1m[34mSELECT "grids".* FROM "grids" WHERE "grids"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/grids_controller.rb:7:in `show'
+[active_model_serializers]   [1m[36mTile Load (0.1ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles" WHERE "tiles"."grid_id" = ?[0m  [["grid_id", 2]]
+[active_model_serializers]   ↳ app/controllers/grids_controller.rb:8:in `show'
+[active_model_serializers] No serializer found for resource: #<Tile id: 2, created_at: "2020-03-24 01:06:54", updated_at: "2020-03-24 01:06:54", grid_id: 2, x: 6, y: 23, property: 3>
+[active_model_serializers] Rendered GridSerializer with ActiveModelSerializers::Adapter::Attributes (3.37ms)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 3050)
+
+
+Started GET "/tiles" for ::1 at 2020-03-23 21:17:24 -0500
+Processing by TilesController#index as */*
+  [1m[36mTile Load (0.2ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles"[0m
+  ↳ app/controllers/tiles_controller.rb:4:in `index'
+No serializer found for resource: #<Tile id: 1, created_at: "2020-03-24 00:09:50", updated_at: "2020-03-24 00:09:50", grid_id: 1, x: 6, y: 5, property: 3>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Tile::ActiveRecord_Relation (1.17ms)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.2ms | Allocations: 2153)
+
+
+Started GET "/grids/2" for ::1 at 2020-03-23 21:17:24 -0500
+Processing by GridsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mGrid Load (0.2ms)[0m  [1m[34mSELECT "grids".* FROM "grids" WHERE "grids"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/grids_controller.rb:7:in `show'
+[active_model_serializers]   [1m[36mTile Load (0.2ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles" WHERE "tiles"."grid_id" = ?[0m  [["grid_id", 2]]
+[active_model_serializers]   ↳ app/controllers/grids_controller.rb:8:in `show'
+[active_model_serializers] No serializer found for resource: #<Tile id: 2, created_at: "2020-03-24 01:06:54", updated_at: "2020-03-24 01:06:54", grid_id: 2, x: 6, y: 23, property: 3>
+[active_model_serializers] Rendered GridSerializer with ActiveModelSerializers::Adapter::Attributes (4.06ms)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.5ms | Allocations: 3050)
+
+
+Started GET "/tiles" for ::1 at 2020-03-23 21:19:51 -0500
+Processing by TilesController#index as */*
+  [1m[36mTile Load (0.3ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles"[0m
+  ↳ app/controllers/tiles_controller.rb:4:in `index'
+No serializer found for resource: #<Tile id: 1, created_at: "2020-03-24 00:09:50", updated_at: "2020-03-24 00:09:50", grid_id: 1, x: 6, y: 5, property: 3>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Tile::ActiveRecord_Relation (1.58ms)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.3ms | Allocations: 2154)
+
+
+Started GET "/grids/2" for ::1 at 2020-03-23 21:19:51 -0500
+Processing by GridsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mGrid Load (0.7ms)[0m  [1m[34mSELECT "grids".* FROM "grids" WHERE "grids"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/grids_controller.rb:7:in `show'
+[active_model_serializers]   [1m[36mTile Load (0.4ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles" WHERE "tiles"."grid_id" = ?[0m  [["grid_id", 2]]
+[active_model_serializers]   ↳ app/controllers/grids_controller.rb:8:in `show'
+[active_model_serializers] No serializer found for resource: #<Tile id: 2, created_at: "2020-03-24 01:06:54", updated_at: "2020-03-24 01:06:54", grid_id: 2, x: 6, y: 23, property: 3>
+[active_model_serializers] Rendered GridSerializer with ActiveModelSerializers::Adapter::Attributes (4.46ms)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 1.1ms | Allocations: 3050)
+
+
+Started GET "/tiles" for ::1 at 2020-03-23 21:29:30 -0500
+Started GET "/grids/2" for ::1 at 2020-03-23 21:29:30 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GridsController#show as */*
+Processing by TilesController#index as */*
+  [1m[36mTile Load (0.4ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles"[0m
+  Parameters: {"id"=>"2"}
+  ↳ app/controllers/tiles_controller.rb:4:in `index'
+  [1m[36mGrid Load (0.3ms)[0m  [1m[34mSELECT "grids".* FROM "grids" WHERE "grids"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/grids_controller.rb:7:in `show'
+No serializer found for resource: #<Tile id: 1, created_at: "2020-03-24 00:09:50", updated_at: "2020-03-24 00:09:50", grid_id: 1, x: 6, y: 5, property: 3>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Tile::ActiveRecord_Relation (3.19ms)
+[active_model_serializers]   [1m[36mTile Load (0.3ms)[0m  [1m[34mSELECT "tiles".* FROM "tiles" WHERE "tiles"."grid_id" = ?[0m  [["grid_id", 2]]
+Completed 200 OK in 16ms (Views: 14.6ms | ActiveRecord: 0.4ms | Allocations: 3147)
+
+
+[active_model_serializers]   ↳ app/controllers/grids_controller.rb:8:in `show'
+[active_model_serializers] No serializer found for resource: #<Tile id: 2, created_at: "2020-03-24 01:06:54", updated_at: "2020-03-24 01:06:54", grid_id: 2, x: 6, y: 23, property: 3>
+[active_model_serializers] Rendered GridSerializer with ActiveModelSerializers::Adapter::Attributes (9.08ms)
+Completed 200 OK in 18ms (Views: 13.9ms | ActiveRecord: 0.6ms | Allocations: 4587)
+
+

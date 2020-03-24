@@ -27,12 +27,12 @@ let offsetY = 0
 let zoom = 1.0
 
 // the grid structure TC
-let tiles = Array.from(Array(size).keys()).map(row => Array.from(Array(size).keys()).map(col => [0, 0]))
+let tiles = Array.from(Array(size).keys()).map(row => Array.from(Array(size).keys()).map(col => { return { x: row, y: col, property: 0 } }))
 
 
 
 // some helper variables for keeping keys pressed, keep track of which texture
-let tools, tool, activeTool, isPlacing
+let tools, tool, activeTool
 
 
 
@@ -62,10 +62,9 @@ texture.onload = _ => {
     // install event listeners
     fgCanvas.addEventListener('mousemove', viz)
     fgCanvas.addEventListener('contextmenu', e => e.preventDefault())
-    fgCanvas.addEventListener('mouseup', unclick)
-    fgCanvas.addEventListener('mousedown', click)
-    fgCanvas.addEventListener('touchend', click)
-    fgCanvas.addEventListener('pointerup', click)
+    fgCanvas.addEventListener('click', click)
+        //fgCanvas.addEventListener('touchend', click)
+        //fgCanvas.addEventListener('pointerup', click)
     document.addEventListener('keydown', scroll)
 
     ///////////// display tool section
@@ -102,9 +101,8 @@ const click = e => {
     const pos = convertScreenToGrid(e.offsetX, e.offsetY)
     if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size) {
 
-        tiles[pos.x][pos.y][0] = (e.which === 3) ? 0 : tool[0]
-        tiles[pos.x][pos.y][1] = (e.which === 3) ? 0 : tool[1]
-        isPlacing = true
+        tiles[pos.x][pos.y].property = (e.which === 3) ? 0 : tool[0] + tool[1] * 12
+
 
         // redraw the entire grid
         drawGrid()
@@ -113,17 +111,11 @@ const click = e => {
 
 }
 
-const unclick = () => {
-    if (isPlacing)
-        isPlacing = false
-}
+
 
 //callback for mouse move: highlights the tile at the mouse position 
 const viz = (e) => {
-    if (isPlacing)
-        click(e)
     const pos = convertScreenToGrid(e.offsetX, e.offsetY)
-        // console.log(pos)
     fg.clearRect(-width, -height, width * 2, height * 2)
     if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size)
         drawTile(fg, pos.x, pos.y, 'rgba(0,0,0,0.2)')
@@ -185,7 +177,7 @@ function drawGrid() {
     //clear everything on the canvas TC
     // remove any old  grid then draw
     bg.clearRect(-width, -height, width * 2, height * 2)
-    tiles.forEach((row, x) => row.forEach((col, y) => drawImageTile(x, y, col[0], col[1]))) // which x and y postion in the texure pic
+    tiles.forEach((row, x) => row.forEach((col, y) => drawImageTile(col))) // which x and y postion in the texure pic
     drawPersons()
 }
 
@@ -206,13 +198,15 @@ function drawTile(c, x, y, color) {
 }
 
 // display a time on a position
-function drawImageTile(x, y, i, j) {
-    const pos = convertGridToScreen(x, y)
+function drawImageTile(tile) {
+    const pos = convertGridToScreen(tile.x, tile.y)
     bg.save()
         //translate build in func for canavs tag, it sets the starting point of drawimg (img = texsure)
     bg.translate(pos.x, pos.y)
         // dimention of the texsure in the pic file
         // we calculate the pixel postion of tile i and j in the texuse img file, we have to multiply to get the real postion of the pic npt the pixel
+    let j = Math.floor(tile.property / 12)
+    let i = tile.property - (12 * j)
     j *= 130
     i *= 230
         // take the img from the texsure img file and then start at postion i and j copy the rectangle of 130x230 pexil and then draw it to canvas at postion 
