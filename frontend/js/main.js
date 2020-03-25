@@ -19,7 +19,7 @@ for (let i = 0; i < texHeight; i++) {
             /* width of 132 instead of 130  = 130 image + 2 border = 132 */
         div.style.backgroundPosition = `-${j*130+2}px -${i*230}px`
         div.addEventListener('click', e => {
-            tool = [i, j]
+            tool = i * texHeight + j
             if (activeTool)
                 document.querySelector(`#${activeTool}`).classList.remove('selected')
             activeTool = e.target.id
@@ -30,7 +30,7 @@ for (let i = 0; i < texHeight; i++) {
 }
 
 // callback  for click: set the selected tile at the click position
-function click(e) {
+function click2(e) {
     const pos = convertScreenToGrid(e.offsetX, e.offsetY)
     if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size) {
         tiles[pos.x][pos.y].property = (e.which === 3) ? 0 : tool[0] + tool[1] * 12
