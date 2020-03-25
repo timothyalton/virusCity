@@ -23,10 +23,19 @@
 </head>
 
 <body>
+	<div id="mySideNav" class="sideNav">
+		<form>
+			<label>Simulation Variables:</label>
+			<input type="text" placeholder="This will be a selection box">			
+		</form>
+	</div>
 
+	<span onclick="openNav()">Open</span>
+	<!-- <nav class="nav-main">
+		<div onclick="openNav()" class="btn-toggle-nav">
+			
+		</div>
 
-	<nav class="nav-main">
-		<div class="btn-toggle-nav"></div>
 		  <ul>
 			<li>Load New Simulation</li>
 		  <br/>
@@ -36,11 +45,14 @@
 	</nav>
 
 	<aside class="nav-sidebar">
-		<form action="submit">
-			<label>Research Vaccine:</label>
-			<input type="text" placeholder="This will be a dropdown menu">
+		<form>
+			<label>Simulation Variables:</label>
+			<input type="text" placeholder="This will be a check box menu with multiple options to implement">
+			<input type="submit" value="Run Simulation"/>
 		</form>
-	</aside>
+	</aside> -->
+
+	
 
 <section id="main">
 	<div id="tools"></div>
@@ -53,6 +65,7 @@
     <script src="js/person.js"></script>
     <script src="js/grid.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
 
 
 
