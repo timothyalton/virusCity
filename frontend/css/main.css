@@ -1,101 +1,100 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 canvas {
-  display: block;
-  position: absolute;
+    display: block;
+    position: absolute;
 }
 
-
 #main {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
 }
 
 #area {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	flex: 1;
-	display: flex;
-	justify-content: space-around;
-	overflow: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    overflow: auto;
 }
 
 #tools {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	overflow: auto;
-	width: 580px;
-	height: 100%;
-	transition: width .8s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: auto;
+    width: 580px;
+    height: 100%;
+    transition: width .8s;
 }
+
 @media only screen and (max-width: 1700px) {
-	#tools {
-		width: 440px;
-	}
+    #tools {
+        width: 440px;
+    }
 }
 
 @media only screen and (max-width: 1540px) {
-	#tools {
-		width: 300px;
-	}
+    #tools {
+        width: 300px;
+    }
 }
+
 @media only screen and (max-width: 1380px) {
-	#tools {
-		width: 160px;
-	}
+    #tools {
+        width: 160px;
+    }
 }
 
-#tools > div {
-	display: block;
-	background-image: url('../textures/01_130x66_130x230.png');
-	background-repeat: no-repeat;
-	background-size: auto;
-	width: 130px;
-	height: 230px;
-	border: 2px dashed transparent;
-	box-sizing: border-box;
+#tools>div {
+    display: block;
+    background-image: url('../textures/01_130x66_130x230.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 130px;
+    height: 230px;
+    border: 2px dashed transparent;
+    box-sizing: border-box;
 }
 
-#tools > div.selected {
-	border-color: #b05355;
+#tools>div.selected {
+    border-color: #b05355;
 }
 
 @media only screen and (max-width: 966px) {
-
-	#main {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
-	
-	#tools {
-		display: flex;
-		align-items: center;
-		overflow: auto;
-		width: 100%;
-		height: 240px;
-	}
-	#area {
-		justify-content: flex-start;
-	}
-	.sideNav {
-		padding-top: 15px;
-		
-	}
-	
+    #main {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #tools {
+        display: flex;
+        align-items: center;
+        overflow: auto;
+        width: 100%;
+        height: 240px;
+    }
+    #area {
+        justify-content: flex-start;
+    }
+    .sideNav {
+        padding-top: 15px;
+    }
 }
+
 
 .nav-main {
 	color: #111;
@@ -110,6 +109,7 @@ canvas {
 	z-index: 1000;
 }
 
+
 .btn-toggle-nav {
 	position: fixed;
 	left: 0;
@@ -123,46 +123,11 @@ canvas {
 	cursor: pointer;
 }
 
+
 .btn-toggle-nav:hover {
 	opacity: 0.5;
 }
 
-/* .nav-main ul {
-	display: flex;
-	flex-wrap: wrap;
-	padding-left: 15px;
-}
-
-.nav-main ul li {
-	list-style: none;
-	line-height: 60px;
-} */
-
-/* .nav-main ul li a {
-	display: block;
-	height: 100%;
-	padding: 0 10px;
-	text-transform: uppercase;
-	text-decoration: none;
-	color: #111;
-	font-family: arial;
-	font-size: 16px;
-} */
-
-/* .nav-sidebar {
-	position: fixed;
-	right: 0;
-	bottom: 0;
-	width: 50px;
-	height: cacl(100vh - 60px);
-	padding: 0 5px;
-	background-color: #1b1b1b;
-	z-index: 1;
-} */
-
-/* .nav-sidebar form{
-	
-} */
 
 .sideNav{
 	color: #fff;
@@ -191,10 +156,11 @@ canvas {
 	color: #f1f1f1;
   }
 
+
 .sidenav .closebtn {
-	position: absolute;
-	top: 0;
-	right: 25px;
-	font-size: 36px;
-	margin-left: 50px;
-  }
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
