@@ -1,157 +1,155 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 canvas {
-  display: block;
-  position: absolute;
+    display: block;
+    position: absolute;
 }
 
-
 #main {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
 }
 
 #area {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	flex: 1;
-	display: flex;
-	justify-content: space-around;
-	overflow: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    overflow: auto;
 }
 
 #tools {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	overflow: auto;
-	width: 580px;
-	height: 100%;
-	transition: width .8s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: auto;
+    width: 580px;
+    height: 100%;
+    transition: width .8s;
 }
+
 @media only screen and (max-width: 1700px) {
-	#tools {
-		width: 440px;
-	}
+    #tools {
+        width: 440px;
+    }
 }
 
 @media only screen and (max-width: 1540px) {
-	#tools {
-		width: 300px;
-	}
+    #tools {
+        width: 300px;
+    }
 }
+
 @media only screen and (max-width: 1380px) {
-	#tools {
-		width: 160px;
-	}
+    #tools {
+        width: 160px;
+    }
 }
 
-#tools > div {
-	display: block;
-	background-image: url('../textures/01_130x66_130x230.png');
-	background-repeat: no-repeat;
-	background-size: auto;
-	width: 130px;
-	height: 230px;
-	border: 2px dashed transparent;
-	box-sizing: border-box;
+#tools>div {
+    display: block;
+    background-image: url('../textures/01_130x66_130x230.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 130px;
+    height: 230px;
+    border: 2px dashed transparent;
+    box-sizing: border-box;
 }
 
-#tools > div.selected {
-	border-color: #b05355;
+#tools>div.selected {
+    border-color: #b05355;
 }
 
 @media only screen and (max-width: 966px) {
-
-	#main {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
-	
-	#tools {
-		display: flex;
-		align-items: center;
-		overflow: auto;
-		width: 100%;
-		height: 240px;
-	}
-	#area {
-		justify-content: flex-start;
-	}
-	
+    #main {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #tools {
+        display: flex;
+        align-items: center;
+        overflow: auto;
+        width: 100%;
+        height: 240px;
+    }
+    #area {
+        justify-content: flex-start;
+    }
 }
 
 .nav-main {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 60px;
-	background-color: #63625e;
-	display: flex;
-	flex-wrap: wrap;
-	z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #63625e;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 1000;
 }
 
 .btn-toggle-nav {
-	width: 60px;
-	height: 100%;
-	background-color: #F98F39;
-	background-image: url("frontend/img/menu.png");
-	background-repeat: no-repeat;
-	background-size: 40%;
-	background-position: center;
-	cursor: pointer;
+    width: 60px;
+    height: 100%;
+    background-color: #F98F39;
+    background-image: url("../img/menu.png");
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+    cursor: pointer;
 }
 
 .btn-toggle-nav:hover {
-	opacity: 0.5;
+    opacity: 0.5;
 }
 
 .nav-main ul {
-	display: flex;
-	flex-wrap: wrap;
-	padding-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 15px;
 }
 
 .nav-main ul li {
-	list-style: none;
-	line-height: 60px;
+    list-style: none;
+    line-height: 60px;
 }
 
+
 /* .nav-main ul li a {
-	display: block;
-	height: 100%;
-	padding: 0 10px;
-	text-transform: uppercase;
-	text-decoration: none;
-	color: #111;
-	font-family: arial;
-	font-size: 16px;
+    display: block;
+    height: 100%;
+    padding: 0 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #111;
+    font-family: arial;
+    font-size: 16px;
 } */
 
 .nav-sidebar {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 50px;
-	height: cacl(100vh - 60px);
-	padding: 0 5px;
-	background-color: #1b1b1b;
-	z-index: 1000;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: cacl(100vh - 60px);
+    padding: 0 5px;
+    background-color: #1b1b1b;
+    z-index: 1000;
 }
 
-.nav-sidebar form{
-	
-}
+.nav-sidebar form {}

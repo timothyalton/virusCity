@@ -30,10 +30,13 @@ let zoom = 1.0
 let tiles = []
 
 function loadGrid(grid) {
+
     tiles = Array.from(Array(size).keys()).map(row => Array.from(Array(size).keys()).map(col => { return { x: row, y: col, property: 0 } }))
-    fetch('http://localhost:3000/grids/5')
+    fetch('http://localhost:3000/grids/1')
         .then(res => res.json())
         .then(grid => grid.tiles.forEach((tile) => tiles[tile.x][tile.y] = tile))
+
+
 }
 
 
@@ -79,11 +82,16 @@ texture.onload = _ => {
 function mouseClick(e) {
     const pos = convertScreenToGrid(e.offsetX, e.offsetY)
     if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size) {
-        tiles[pos.x][pos.y].property = (e.which === 3) ? 0 : tool[0] + tool[1] * 12
+
+        tiles[pos.x][pos.y].property = (e.which === 3) ? 0 : tool
             // redraw the entire grid
         setTile(tiles[pos.x][pos.y])
         drawGrid()
         clearSelection()
+        highlightPath(tiles[0][0], findPath(tiles[0][0], tiles[pos.x][pos.y]))
+            // console.log(findPath(tiles[0][0], tiles[pos.x][pos.y]))
+        console.log(tiles[pos.x][pos.y].property)
+
     }
 }
 
@@ -93,8 +101,12 @@ function mouseClick(e) {
 function mouseMove(e) {
     const pos = convertScreenToGrid(e.offsetX, e.offsetY)
     clearSelection()
-    if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size)
+    if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size) {
         highlightSelection(pos.x, pos.y)
+            // console.log(getValidNeighbors(tiles[pos.x][pos.y]))
+
+    }
+
 }
 
 function clearSelection() {
@@ -102,6 +114,7 @@ function clearSelection() {
 }
 
 function highlightSelection(x, y) {
+    // console.log([x, y])
     drawTile(x, y, 'rgba(0,0,0,0.2)')
 }
 
@@ -122,7 +135,7 @@ function drawGrid() {
     // remove any old  grid then draw
     bg.clearRect(-width, -height, width * 2, height * 2)
     tiles.forEach((row, x) => row.forEach((col, y) => drawImageTile(col))) // which x and y postion in the texure pic
-    drawPersons()
+    drawPeople()
 }
 
 // display shaded selection for tile
@@ -149,8 +162,8 @@ function drawImageTile(tile) {
     bg.translate(pos.x, pos.y)
         // dimention of the texsure in the pic file
         // we calculate the pixel postion of tile i and j in the texuse img file, we have to multiply to get the real postion of the pic npt the pixel
-    let j = Math.floor(tile.property / 12)
-    let i = tile.property - (12 * j)
+    let i = Math.floor(tile.property / texWidth)
+    let j = tile.property - (texWidth * i)
     j *= 130
     i *= 230
         // take the img from the texsure img file and then start at postion i and j copy the rectangle of 130x230 pexil and then draw it to canvas at postion 
@@ -182,69 +195,406 @@ function convertGridToScreen(x, y) {
 
 
 
-
-
-
-const drawBall = (u, v) => {
-
-    let pos = convertGridToScreen(u + 1 / 2, v + 1 / 2)
-    let x = pos.x
-    let y = pos.y
+function drawPerson(person) {
+    let pos = convertGridToScreen(person.tile.x + 1 / 2, person.tile.y + 1 / 2)
     let radius = 10 * zoom
-
     bg.save()
     bg.beginPath();
-    bg.arc(x, y, radius, 0, Math.PI * 2, true);
+    bg.arc(pos.x, pos.y, radius, 0, Math.PI * 2, true);
     bg.closePath();
     bg.fillStyle = 'blue'
     bg.fill()
     bg.restore()
 }
 
-window.setInterval(tick, 500)
+// window.setInterval(tick, 500)
 
 function tick() {
     drawGrid()
     movePersons()
 }
 
-persons = [
 
-]
 
-addperson(3, 5)
-addperson(5, 4)
-addperson(6, 8)
+// goToTile(people[0], [20, 37])
 
-goToTile(persons[0], [20, 37])
-
-function drawPersons() {
-    persons.forEach(person => drawBall(person.pos[0], person.pos[1]))
+function drawPeople() {
+    people.forEach(drawPerson)
 }
 
-function addperson(x, y) {
-    persons.push({ pos: [x, y], path: [] })
+
+
+
+
+
+
+function possibleExits(tile) {
+    let exits = [
+        [],
+        [],
+        [
+            [0, 1],
+            [0, -1]
+        ],
+        [
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1]
+        ],
+        [
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1]
+        ],
+
+        [
+            [0, 1],
+            [0, -1]
+        ],
+        [
+            [0, 1],
+            [0, -1]
+        ],
+        [
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [-1, 0]
+        ],
+        [
+            [0, 1]
+        ],
+        [
+            [0, -1]
+        ],
+        [
+            [1, 0]
+        ],
+        [
+            [1, 0],
+            [-1, 0],
+            [0, 1]
+        ],
+        [
+            [1, 0],
+            [-1, 0],
+            [0, -1]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0]
+        ],
+        [
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, -1],
+            [0, 1]
+        ],
+        [
+            [-1, 0],
+            [0, 1]
+        ],
+        [
+            [1, 0],
+            [0, -1]
+        ],
+        [
+            [1, 0],
+            [0, 1]
+        ],
+        [
+            [-1, 0],
+            [0, -1]
+        ],
+        [
+            [0, 1]
+        ],
+        [
+            [0, -1]
+        ],
+        [
+            [-1, 0]
+        ],
+        [
+            [1, 0]
+        ],
+        [
+            [1, 0]
+        ],
+        [
+            [-1, 0]
+        ],
+        [
+            [0, 1]
+        ],
+        [
+            [0, -1]
+        ],
+        [
+            [-1, 0],
+            [0, 1]
+        ],
+        [
+            [1, 0],
+            [0, -1]
+        ],
+        [
+            [-1, 0],
+            [0, -1]
+        ],
+        [
+            [0, 1],
+            [1, 0]
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ],
+        [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ]
+    ]
+
+    return exits[tile.property]
 }
 
-function movePersons() {
-    persons.forEach(person => {
-        if (person.path.length > 0) {
-            let direction = person.path.shift()
-            person.pos[0] += direction[0]
-            person.pos[1] += direction[1]
-        }
+
+function getValidNeighbors(tile) {
+    return possibleExits(tile).filter(function(exit) {
+        let x = tile.x + exit[0]
+        let y = tile.y + exit[1]
+        if (x < 0 || x >= size || y < 0 || y >= size) return false
+        let entries = possibleExits(tiles[x][y])
+        return entries.some((entry) => entry[0] == exit[0] * -1 && entry[1] == exit[1] * -1)
+    })
+
+}
+
+// function findPath(start, target) {
+//     if (start.x == target.x && start.y == target.y) {
+//         return []
+//     }
+//     let tile = start
+//     let validPath
+//         // let i = 0 
+//         // while (i < ){}
+//     steps = getValidNeighbors(tile)
+//     steps.some(function(step) {
+//         let path
+//         let neighbor = tiles[tile.x + step[0]][tile.y + step[1]]
+//         if (neighbor.visited) return false
+//         neighbor.visited = true
+//         path = findPath(neighbor, target)
+
+
+//         // console.log(path)
+//         if (path) {
+//             path.unshift(step)
+//             validPath = path
+//         }
+//         return path
+//     })
+//     return validPath
+// }
+
+function highlightPath(start, path) {
+    //clearSelection()
+    // highlightSelection(tile)
+    // console.log(path)
+    let tile = start
+    path.forEach(function(step) {
+        //console.log(step)
+        drawPerson({ tile: tile })
+        tile = tiles[tile.x + step[0]][tile.y + step[1]]
     })
 }
 
-function goToTile(person, destination) {
-    let x = destination[0] - person.pos[0]
-    let y = destination[1] - person.pos[1]
-    for (let i = 0; i < Math.abs(x); i++) {
-        person.path.push([Math.sign(x), 0])
-    }
+function findPath(start, target) {
+    let open = [Object.assign({}, start, {})]
+    let closed = []
 
-    for (let i = 0; i < Math.abs(y); i++) {
-        person.path.push([0, Math.sign(y)])
-    }
+    while (open.length > 0) {
+        let tile = open[0]
+        getValidNeighbors(tile).forEach(function(step) {
+            let neighbor = tiles[tile.x + step[0]][tile.y + step[1]]
+            if (!closed.find(elemnt => elemnt.x == neighbor.x && elemnt.y == neighbor.y) && (!open.find(elemnt => elemnt.x == neighbor.x && elemnt.y == neighbor.y)))
+                open.push(Object.assign({}, neighbor, { previous: tile, step: step }))
+        })
+        closed.push(open.shift())
 
+        if (tile.x == target.x && tile.y == target.y) {
+            path = []
+            while (tile.previous) {
+                path.unshift(tile.step)
+                tile = tile.previous
+            }
+            return path
+        }
+    }
 }
