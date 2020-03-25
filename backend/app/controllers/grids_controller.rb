@@ -8,7 +8,7 @@ class GridsController < ApplicationController
     
     def show
         # grid = Grid.find(params[:id])
-        render json: grid
+        render json: @grid
     end 
 
     def new
@@ -37,7 +37,7 @@ class GridsController < ApplicationController
     end 
 
     def find_grid
-        grid = Grid.find(params[:id])
+        @grid = Grid.find(params[:id])
     end
 
 end
