@@ -23,28 +23,28 @@
 </head>
 
 <body>
+
+	<nav class="nav-main">
+		<div onclick="openNav()" class="btn-toggle-nav"></div>
+		<h2 style="margin:auto">Welcome To Virus City!</h2>
+	</nav>
+
 	<div id="mySideNav" class="sideNav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+		&times;</a>
 		<form>
 			<label>Simulation Variables:</label>
-			<input type="text" placeholder="This will be a selection box">			
+			<input type="checkbox" name="Curfew">			
+			<input type="checkbox" name="Quarintine">			
+			<input type="checkbox" name="Martial Law">			
+			<input type="checkbox" name="Research Vaccine">			
 		</form>
 	</div>
 
-	<span onclick="openNav()">Open</span>
-	<!-- <nav class="nav-main">
-		<div onclick="openNav()" class="btn-toggle-nav">
-			
-		</div>
+	<!-- <span onclick="openNav()">Open</span> -->
+	
 
-		  <ul>
-			<li>Load New Simulation</li>
-		  <br/>
-			<li>Option</li>
-
-		  </ul>
-	</nav>
-
-	<aside class="nav-sidebar">
+	<!-- <aside class="nav-sidebar">
 		<form>
 			<label>Simulation Variables:</label>
 			<input type="text" placeholder="This will be a check box menu with multiple options to implement">
