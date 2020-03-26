@@ -19,7 +19,7 @@ for (let i = 0; i < texHeight; i++) {
             /* width of 132 instead of 130  = 130 image + 2 border = 132 */
         div.style.backgroundPosition = `-${j*130+2}px -${i*230}px`
         div.addEventListener('click', e => {
-            tool = i * texHeight + j
+            tool = i * texWidth + j
             if (activeTool)
                 document.querySelector(`#${activeTool}`).classList.remove('selected')
             activeTool = e.target.id

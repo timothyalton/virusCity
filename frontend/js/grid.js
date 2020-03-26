@@ -73,7 +73,7 @@ texture.onload = _ => {
 
     // display the grid
     loadGrid()
-    eventLoop()
+    // eventLoop()
 }
 
 
@@ -570,6 +570,7 @@ function highlightPath(start, path) {
 }
 
 function findPath(start, target) {
+    console.log("Running")
     let open = [Object.assign({}, start, {})]
     let closed = []
 
@@ -659,7 +660,7 @@ function infectPeople() {
 }
 
 
-let prohibitedActions = ["go shopping", "go to school"]
+let prohibitedActions = []
 
 function actionAllowed(action) {
     return !prohibitedActions.find(prohibitedAction => prohibitedAction == action.category)
