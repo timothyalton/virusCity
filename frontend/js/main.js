@@ -10,6 +10,7 @@ document.addEventListener('keydown', scroll)
 ///////////// display tool section
 tools = document.querySelector('#tools')
     // left bar
+
 let toolCount = 0
 for (let i = 0; i < texHeight; i++) {
     for (let j = 0; j < texWidth; j++) {
@@ -19,7 +20,8 @@ for (let i = 0; i < texHeight; i++) {
             /* width of 132 instead of 130  = 130 image + 2 border = 132 */
         div.style.backgroundPosition = `-${j*130+2}px -${i*230}px`
         div.addEventListener('click', e => {
-            tool = i * texHeight + j
+            tool = i * texWidth + j
+            console.log(toolCount)
             if (activeTool)
                 document.querySelector(`#${activeTool}`).classList.remove('selected')
             activeTool = e.target.id
