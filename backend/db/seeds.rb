@@ -1,5 +1,7 @@
 Grid.destroy_all
 Tile.destroy_all
+Person.destroy_all
+Action.destroy_all
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -11,13 +13,47 @@ Tile.destroy_all
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-g1 = Grid.create()
+g1 = Grid.create(size: 50)
+buildings = []
 
-size = 50
-(0..size-1).each do |row| 
-    (0..size-1).each do |col|
+(0..g1.size-1).each do |row| 
+    (0..g1.size-1).each do |col|
+      if(rand(100)<20)
+        buildings << Tile.create(x:row ,y:col, property: 54 + rand(18), grid_id: g1.id)
+      else
         Tile.create(x:row ,y:col, property: 0, grid_id: g1.id)
+      end
     end 
 end
+
+
+
+
+
+50.times do 
+    Person.create({
+      name: Faker::Name.name,
+      health: "healthy",
+      tile: buildings[rand(buildings.length)]
+    })
+  end
+
+  5.times do 
+    Person.create({
+      name: Faker::Name.name,
+      health: "infected",
+      tile: buildings[rand(buildings.length)]
+    })
+  end
+
+  120.times do 
+    Action.create({
+      time: Faker::Number.between(from: 0, to: 1440),
+      category: ["go to work","go to school","go shopping"][rand(3)],
+      tile: buildings[rand(buildings.length)],
+      person: Person.all[rand(Person.all.length)]
+    })
+  end
+
 
 

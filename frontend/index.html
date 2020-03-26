@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="theme-color" content="#fff">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="mobile-web-app-capable" content="yes">
-	<meta property="og:url" content="https://victorribeiro.com/isocity">
-	<meta property="og:type" content="Article">
-	<meta property="og:title" content="IsoCity">
-	<meta property="og:author" content="Victor Ribeiro">
-	<meta property="og:description" content="Isometric City Builder">
-	<meta property="og:image" content="https://victorribeiro.com/city/favicon.png">
-	<meta property="og:image:width" content="512">
-	<meta property="og:image:height" content="512">
-	<meta name="Description" content="Isometric City Builder">
-	<link rel="icon" href="favicon.png" sizes="256x256">
-	<link rel="apple-touch-icon" href="favicon.png">
-	<title>IsoCity</title>
-	<link rel="stylesheet" href="css/main.css">
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#fff">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta property="og:url" content="https://victorribeiro.com/isocity">
+    <meta property="og:type" content="Article">
+    <meta property="og:title" content="IsoCity">
+    <meta property="og:author" content="Victor Ribeiro">
+    <meta property="og:description" content="Isometric City Builder">
+    <meta property="og:image" content="https://victorribeiro.com/city/favicon.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta name="Description" content="Isometric City Builder">
+    <link rel="icon" href="favicon.png" sizes="256x256">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <title>IsoCity</title>
+    <link rel="stylesheet" href="css/resetstyle.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
-<section id="main">
-	<div id="tools"></div>
-	<div id="area">
-		<canvas id="bg"></canvas>
-		<canvas id="fg"></canvas>
-	</div>
-</section>
-<script src="js/main.js"></script>
+
+	<nav class="nav-main">
+		<div onclick="openNav()" class="btn-toggle-nav"></div>
+		<h1 style="margin:auto">Welcome  To  Virus  City!</h1>
+	</nav>
+
+    <div id="mySideNav" class="sideNav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+		&times;</a>
+
+        <h4>Quarintine:</h4>
+        <form id="sim-var">
+            <input style="color:#fff" type="checkbox" name="action1" value="">
+            <label for="action1">School</label><br>
+            <input type="checkbox" name="action2" value="" />
+            <label for="action2">Work</label><br>
+            <input type="checkbox" name="action3" value="" />
+            <label for="action3">Shopping</label><br>
+            <input type="checkbox" name="action4" value="" />
+            <label for="action4">Gym</label><br>
+            <input type="submit" value="Run Simulation" />
+        </form>
+    </div>
+
+
+
+
+
+
+    <section id="main">
+        <div id="tools"></div>
+        <div id="area">
+            <canvas id="bg"></canvas>
+            <canvas id="fg"></canvas>
+        </div>
+    </section>
+
+    <script src="js/person.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
+
+
 
 </body>
+
 </html>
