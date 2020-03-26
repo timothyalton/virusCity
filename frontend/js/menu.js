@@ -36,8 +36,4 @@ form.addEventListener("submit", () => {
     if (gym) {
         prohibitedActions.push("go to gym")
     }
-    console.log(school)
-    eventLoop()
-
-
-
+})

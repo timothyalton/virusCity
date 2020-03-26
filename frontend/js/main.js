@@ -33,6 +33,15 @@ for (let i = 0; i < texHeight; i++) {
     }
 }
 
+let startbutton = document.querySelector("#start-simulation")
+startbutton.addEventListener("click", () => {
+    startSimulation();
+    startbutton.value = running ? "Stop Simulation" : "Start Simulation"
+})
+
+
+
+
 // callback  for click: set the selected tile at the click position
 function click2(e) {
     const pos = convertScreenToGrid(e.offsetX, e.offsetY)
