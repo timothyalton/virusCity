@@ -39,5 +39,5 @@ form.addEventListener("submit", () => {
     console.log(school)
     eventLoop()
 
-
+})
 

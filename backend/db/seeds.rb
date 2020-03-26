@@ -13,7 +13,7 @@ Action.destroy_all
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-g1 = Grid.create(size: 20)
+g1 = Grid.create(size: 50)
 buildings = []
 
 (0..g1.size-1).each do |row| 
@@ -30,7 +30,7 @@ end
 
 
 
-30.times do 
+50.times do 
     Person.create({
       name: Faker::Name.name,
       health: "healthy",
