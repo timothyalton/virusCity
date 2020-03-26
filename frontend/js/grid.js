@@ -24,17 +24,27 @@ let offsetY = 0
 
 //everything I draw will multiply by the zoom / so everytime I click on q or w will increase or decrease the number
 let zoom = 1.0
-
-
-
 let tiles = []
+let people = []
 
-function loadGrid(grid) {
+function loadGrid() {
     fetch('http://localhost:3000/grids/1')
         .then(res => res.json())
         .then(function(grid) {
+            size = grid.size
             tiles = Array.from(Array(grid.size).keys()).map(row => Array.from(Array(grid.size).keys()).map(col => { return { x: row, y: col, property: 0 } }))
             grid.tiles.forEach((tile) => tiles[tile.x][tile.y] = tile)
+
+            fetch(`http://localhost:3000/people`)
+                .then(res => res.json())
+                .then(function(persons) {
+                    people = persons
+                    drawGrid()
+
+
+                })
+
+
         })
 }
 
@@ -593,6 +603,7 @@ function findPath(start, target) {
             return path
         }
     }
+    return []
 }
 
 
@@ -622,16 +633,29 @@ function goToTile(person, destination) {
 
 }
 
-let people = []
 
-fetch(`http://localhost:3000/people`)
-    .then(res => res.json())
-    .then(persons => people = persons)
+
 
 
 
 let time = 0
 let running = false
+
+let divTime = document.getElementById('time')
+let divPeople = document.getElementById("people-Infected")
+
+function displayCounter() {
+    divTime.innerText = `Time : ${time}`
+    divPeople.innerText = `People infected : ${numberofinfected()}`
+
+}
+
+function numberofinfected() {
+    return people.reduce((acc, person) => acc += (person.health == "infected" ? 1 : 0), 0)
+}
+
+
+
 
 function eventLoop() {
     console.log(prohibitedActions)
@@ -639,9 +663,10 @@ function eventLoop() {
     movePeople()
     infectPeople()
     drawGrid()
+    displayCounter()
     time = (time + 1) % (24 * 60)
     if (running) {
-        window.setTimeout(eventLoop, 1000)
+        window.setTimeout(eventLoop, 350)
     }
 }
 
@@ -650,7 +675,7 @@ function startSimulation() {
     if (!running) {
         running = true
         eventLoop()
-    }
+    } else stopSimulation()
 }
 
 function stopSimulation() {
