@@ -13,11 +13,16 @@ Action.destroy_all
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-g1 = Grid.create(size: 10)
+g1 = Grid.create(size: 20)
+buildings = []
 
 (0..g1.size-1).each do |row| 
     (0..g1.size-1).each do |col|
+      if(rand(100)<20)
+        buildings << Tile.create(x:row ,y:col, property: 54 + rand(18), grid_id: g1.id)
+      else
         Tile.create(x:row ,y:col, property: 0, grid_id: g1.id)
+      end
     end 
 end
 
@@ -29,7 +34,7 @@ end
     Person.create({
       name: Faker::Name.name,
       health: "healthy",
-      tile: Tile.all[rand(Tile.all.length)]
+      tile: buildings[rand(buildings.length)]
     })
   end
 
@@ -37,7 +42,7 @@ end
     Person.create({
       name: Faker::Name.name,
       health: "infected",
-      tile: Tile.all[rand(Tile.all.length)]
+      tile: buildings[rand(buildings.length)]
     })
   end
 
@@ -45,7 +50,7 @@ end
     Action.create({
       time: Faker::Number.between(from: 0, to: 1440),
       category: ["go to work","go to school","go shopping"][rand(3)],
-      tile: Tile.all[rand(Tile.all.length)],
+      tile: buildings[rand(buildings.length)],
       person: Person.all[rand(Person.all.length)]
     })
   end

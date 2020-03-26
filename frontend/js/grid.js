@@ -1,6 +1,6 @@
 // setup and configuration
 // size of the grid
-let size = 10
+let size = 20
 
 // size of the screen
 const width = window.innerWidth
@@ -73,7 +73,6 @@ texture.onload = _ => {
 
     // display the grid
     loadGrid()
-    // eventLoop()
 }
 
 
@@ -90,6 +89,8 @@ function mouseClick(e) {
             // highlightPath(tiles[0][0], findPath(tiles[0][0], tiles[pos.x][pos.y]))
             // console.log(findPath(tiles[0][0], tiles[pos.x][pos.y]))
             // console.log(tiles[pos.x][pos.y].property)
+
+        console.log(tool)
 
     }
 }
@@ -630,14 +631,30 @@ fetch(`http://localhost:3000/people`)
 
 
 let time = 0
+let running = false
 
 function eventLoop() {
+    console.log(prohibitedActions)
     executeSchedule(time)
     movePeople()
     infectPeople()
     drawGrid()
     time = (time + 1) % (24 * 60)
-    window.setTimeout(eventLoop, 1000)
+    if (running) {
+        window.setTimeout(eventLoop, 1000)
+    }
+}
+
+
+function startSimulation() {
+    if (!running) {
+        running = true
+        eventLoop()
+    }
+}
+
+function stopSimulation() {
+    running = false
 }
 
 function executeSchedule(time) {
