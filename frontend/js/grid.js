@@ -1,6 +1,6 @@
 // setup and configuration
 // size of the grid
-let size = 50
+let size = 10
 
 // size of the screen
 const width = window.innerWidth
@@ -30,13 +30,12 @@ let zoom = 1.0
 let tiles = []
 
 function loadGrid(grid) {
-
-    tiles = Array.from(Array(size).keys()).map(row => Array.from(Array(size).keys()).map(col => { return { x: row, y: col, property: 0 } }))
     fetch('http://localhost:3000/grids/1')
         .then(res => res.json())
-        .then(grid => grid.tiles.forEach((tile) => tiles[tile.x][tile.y] = tile))
-
-
+        .then(function(grid) {
+            tiles = Array.from(Array(grid.size).keys()).map(row => Array.from(Array(grid.size).keys()).map(col => { return { x: row, y: col, property: 0 } }))
+            grid.tiles.forEach((tile) => tiles[tile.x][tile.y] = tile)
+        })
 }
 
 
@@ -74,7 +73,7 @@ texture.onload = _ => {
 
     // display the grid
     loadGrid()
-    drawGrid()
+    eventLoop()
 }
 
 
@@ -88,9 +87,9 @@ function mouseClick(e) {
         setTile(tiles[pos.x][pos.y])
         drawGrid()
         clearSelection()
-        highlightPath(tiles[0][0], findPath(tiles[0][0], tiles[pos.x][pos.y]))
+            // highlightPath(tiles[0][0], findPath(tiles[0][0], tiles[pos.x][pos.y]))
             // console.log(findPath(tiles[0][0], tiles[pos.x][pos.y]))
-        console.log(tiles[pos.x][pos.y].property)
+            // console.log(tiles[pos.x][pos.y].property)
 
     }
 }
@@ -202,17 +201,12 @@ function drawPerson(person) {
     bg.beginPath();
     bg.arc(pos.x, pos.y, radius, 0, Math.PI * 2, true);
     bg.closePath();
-    bg.fillStyle = 'blue'
+    if (person.health == "healthy") { bg.fillStyle = 'blue' } else if (person.health == "infected") { bg.fillStyle = 'red' }
     bg.fill()
     bg.restore()
 }
 
-// window.setInterval(tick, 500)
 
-function tick() {
-    drawGrid()
-    movePersons()
-}
 
 
 
@@ -584,17 +578,89 @@ function findPath(start, target) {
         getValidNeighbors(tile).forEach(function(step) {
             let neighbor = tiles[tile.x + step[0]][tile.y + step[1]]
             if (!closed.find(elemnt => elemnt.x == neighbor.x && elemnt.y == neighbor.y) && (!open.find(elemnt => elemnt.x == neighbor.x && elemnt.y == neighbor.y)))
-                open.push(Object.assign({}, neighbor, { previous: tile, step: step }))
+                open.push(Object.assign({}, neighbor, { previous: tile }))
         })
         closed.push(open.shift())
 
         if (tile.x == target.x && tile.y == target.y) {
             path = []
             while (tile.previous) {
-                path.unshift(tile.step)
+                path.unshift(tile)
                 tile = tile.previous
             }
             return path
         }
     }
+}
+
+
+function movePeople() {
+    people.forEach(person => {
+        if (person.path && person.path.length > 0) {
+            person.tile = person.path.shift()
+        }
+    })
+}
+
+function goToTile(person, destination) {
+
+    if (!person.path) person.path = []
+    person.path = [...person.path, ...findPath(person.tile, destination)]
+    return 0
+        // let x = destination.x - person.tile.x
+        // let y = destination.y - person.tile.y
+        // person.path = []
+        // for (let i = 0; i < Math.abs(x); i++) {
+        //     person.path.push(tiles[person.tile.x + i * Math.sign(x)][person.tile.y])
+        // }
+
+    // for (let i = 0; i < Math.abs(y); i++) {
+    //     person.path.push(tiles[person.tile.x][person.tile.y + i * Math.sign(y)])
+    // }
+
+}
+
+let people = []
+
+fetch(`http://localhost:3000/people`)
+    .then(res => res.json())
+    .then(persons => people = persons)
+
+
+
+let time = 0
+
+function eventLoop() {
+    executeSchedule(time)
+    movePeople()
+    infectPeople()
+    drawGrid()
+    time = (time + 1) % (24 * 60)
+    window.setTimeout(eventLoop, 1000)
+}
+
+function executeSchedule(time) {
+    people.forEach(function(person) {
+        action = person.actions.find(action => action.time == time)
+        if (action && actionAllowed(action))
+            goToTile(person, action.tile)
+    })
+}
+
+
+
+
+function infectPeople() {
+    people.forEach(personA => people.forEach(personB => {
+        if (personA.tile.x == personB.tile.x && personA.tile.y == personB.tile.y && personA.health == "infected")
+            personB.health = "infected"
+    }))
+
+}
+
+
+let prohibitedActions = ["go shopping", "go to school"]
+
+function actionAllowed(action) {
+    return !prohibitedActions.find(prohibitedAction => prohibitedAction == action.category)
 }
