@@ -25,10 +25,17 @@
 <body>
 
 
-	<nav class="nav-main">
-		<div onclick="openNav()" class="btn-toggle-nav"></div>
-		<h1 style="margin:auto">Welcome  To  Virus  City!</h1>
-	</nav>
+
+
+    <nav class="nav-main">
+        <div onclick="openNav()" class="btn-toggle-nav"></div>
+        <h1 style="margin:auto">Welcome To Virus City!</h1>
+        <div>
+            <div id="time">Time:</div>
+            <div id="people-Infected">People Infected:</div>
+
+        </div>
+    </nav>
 
     <div id="mySideNav" class="sideNav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
@@ -44,7 +51,7 @@
             <label for="action3">Shopping</label><br>
             <input type="checkbox" name="action4" value="" />
             <label for="action4">Gym</label><br>
-            <input type="submit" value="Run Simulation" />
+            <input id="start-simulation" type="submit" value="Run Simulation" />
         </form>
     </div>
 

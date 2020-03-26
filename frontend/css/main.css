@@ -11,7 +11,7 @@ canvas {
 }
 
 h1 {
-	text-shadow:2px 2px 5px #F98F39 ;
+    text-shadow: 2px 2px 5px #F98F39;
     font-family: 'virusfont', sans-serif;
 }
 
@@ -47,8 +47,7 @@ h1 {
 
 @font-face {
     font-family: 'virusfont';
-    src: url('../fonts/DoubleFeature20.ttf')
-    format('truetype');
+    src: url('../fonts/DoubleFeature20.ttf') format('truetype');
 }
 
 @media only screen and (max-width: 1700px) {
@@ -106,66 +105,61 @@ h1 {
     }
 }
 
-
 .nav-main {
-	color: #111;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 60px;
-	background-color: #63625e;
-	display: flex;
-	flex-wrap: wrap;
-	z-index: 1000;
+    color: #111;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #63625e;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 1000;
 }
-
 
 .btn-toggle-nav {
-	position: fixed;
-	left: 0;
-	width: 60px;
-	height: 60px;
-	background-color: #F98F39;
-	background-image: url("../img/menu.png");
-	background-repeat: no-repeat;
-	background-size: 40%;
-	background-position: center;
-	cursor: pointer;
+    position: fixed;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background-color: #F98F39;
+    background-image: url("../img/menu.png");
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+    cursor: pointer;
 }
-
 
 .btn-toggle-nav:hover {
-	opacity: 0.5;
+    opacity: 0.5;
 }
 
-
-.sideNav{
-	color: #fff;
-	height: 100%;
-	width: 0;
-	position: fixed; 
-	z-index: 1;
-	top: 0;
-	left: 0;
-	background-color: #111;
-	overflow-x: hidden;
-	padding-top: 60px;
-	transition: 0.5s;
+.sideNav {
+    color: #fff;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
 }
 
 .sideNav a {
-	padding: 8px 8px 8px 32px;
-	text-decoration: none;
-	font-size: 25px;
-	color: #818181;
-	display: block;
-	transition: 0.3s;
-  }
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
 
-  .sideNav a:hover {
-	color: #f1f1f1;
-  }
-
+.sideNav a:hover {
+    color: #f1f1f1;
+}
 
 .sidenav .closebtn {
     position: absolute;
@@ -173,4 +167,13 @@ h1 {
     right: 0;
     font-size: 36px;
     margin-left: 50px;
+}
+
+.nav-main div {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
