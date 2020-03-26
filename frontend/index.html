@@ -17,39 +17,39 @@
     <meta name="Description" content="Isometric City Builder">
     <link rel="icon" href="favicon.png" sizes="256x256">
     <link rel="apple-touch-icon" href="favicon.png">
-	<title>IsoCity</title>
-	<link rel="stylesheet" href="css/resetstyle.css">
+    <title>IsoCity</title>
+    <link rel="stylesheet" href="css/resetstyle.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
-	<nav class="nav-main">
-		<div onclick="openNav()" class="btn-toggle-nav"></div>
-		<h2 style="margin:auto">Welcome To Virus City!</h2>
-	</nav>
+    <nav class="nav-main">
+        <div onclick="openNav()" class="btn-toggle-nav"></div>
+        <h2 style="margin:auto">Welcome To Virus City!</h2>
+    </nav>
 
-	<div id="mySideNav" class="sideNav">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+    <div id="mySideNav" class="sideNav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
 		&times;</a>
-		<h4>Simulation Variables:</h4>
-		<form id="sim-var">
-			<input style="color:#fff" type="checkbox" name="action1" value="Curfew">			
-			<label for="action1">Curfew</label><br>
-			<input type="checkbox" name="action2" value="Quarintine"/>	
-			<label for="action2">Quarintine</label><br>	
-			<input type="checkbox" name="action3" value="Martial Law"/>		
-			<label for="action3">Martial Law</label><br>
-			<input type="checkbox" name="action4" value="Research Vaccine"/>
-			<label for="action4">Research Vaccine</label><br>
-			<input type="submit" value="Run Simulation"/>			
-		</form>
-	</div>
+        <h4>Quarintine:</h4>
+        <form id="sim-var">
+            <input style="color:#fff" type="checkbox" name="action1" value="">
+            <label for="action1">School</label><br>
+            <input type="checkbox" name="action2" value="" />
+            <label for="action2">Work</label><br>
+            <input type="checkbox" name="action3" value="" />
+            <label for="action3">Shopping</label><br>
+            <input type="checkbox" name="action4" value="" />
+            <label for="action4">Gym</label><br>
+            <input type="submit" value="Run Simulation" />
+        </form>
+    </div>
 
-	<!-- <span onclick="openNav()">Open</span> -->
-	
+    <!-- <span onclick="openNav()">Open</span> -->
 
-	<!-- <aside class="nav-sidebar">
+
+    <!-- <aside class="nav-sidebar">
 		<form>
 			<label>Simulation Variables:</label>
 			<input type="text" placeholder="This will be a check box menu with multiple options to implement">
@@ -57,16 +57,16 @@
 		</form>
 	</aside> -->
 
-	
 
-<section id="main">
-	<div id="tools"></div>
-	<div id="area">
-		<canvas id="bg"></canvas>
-		<canvas id="fg"></canvas>
-	</div>
-</section>
-  
+
+    <section id="main">
+        <div id="tools"></div>
+        <div id="area">
+            <canvas id="bg"></canvas>
+            <canvas id="fg"></canvas>
+        </div>
+    </section>
+
     <script src="js/person.js"></script>
     <script src="js/grid.js"></script>
     <script src="js/main.js"></script>
