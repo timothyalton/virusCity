@@ -2,40 +2,6 @@ function addperson(x, y) {
     people.push({ pos: [x, y], path: [] })
 }
 
-function movePersons() {
-    people.forEach(person => {
-        if (person.path.length > 0) {
-            let direction = person.path.shift()
-            person.pos[0] += direction[0]
-            person.pos[1] += direction[1]
-        }
-    })
-}
-
-function goToTile(person, destination) {
-    let x = destination[0] - person.pos[0]
-    let y = destination[1] - person.pos[1]
-    for (let i = 0; i < Math.abs(x); i++) {
-        person.path.push([Math.sign(x), 0])
-    }
-
-    for (let i = 0; i < Math.abs(y); i++) {
-        person.path.push([0, Math.sign(y)])
-    }
-
-}
-
-let people = [
-
-]
-
-fetch(`http://localhost:3000/people`)
-    .then(res => res.json())
-    .then(persons => people = persons)
-
-
-
-
 
 
 
