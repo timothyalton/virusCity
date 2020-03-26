@@ -73,7 +73,6 @@ texture.onload = _ => {
 
     // display the grid
     loadGrid()
-
 }
 
 
@@ -572,6 +571,7 @@ function highlightPath(start, path) {
 }
 
 function findPath(start, target) {
+    console.log("Running")
     let open = [Object.assign({}, start, {})]
     let closed = []
 

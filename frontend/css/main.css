@@ -10,6 +10,11 @@ canvas {
     position: absolute;
 }
 
+h1 {
+	text-shadow:2px 2px 5px #F98F39 ;
+    font-family: 'virusfont', sans-serif;
+}
+
 #main {
     position: relative;
     display: flex;
@@ -38,6 +43,12 @@ canvas {
     width: 580px;
     height: 100%;
     transition: width .8s;
+}
+
+@font-face {
+    font-family: 'virusfont';
+    src: url('../fonts/DoubleFeature20.ttf')
+    format('truetype');
 }
 
 @media only screen and (max-width: 1700px) {
@@ -98,7 +109,6 @@ canvas {
 
 .nav-main {
 	color: #111;
-	text-shadow:2px 2px 5px #F98F39 ;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -160,7 +170,7 @@ canvas {
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 0;
     font-size: 36px;
     margin-left: 50px;
 }

@@ -21,7 +21,9 @@ for (let i = 0; i < texHeight; i++) {
         div.style.backgroundPosition = `-${j*130+2}px -${i*230}px`
         div.addEventListener('click', e => {
             tool = i * texWidth + j
+
             console.log(toolCount)
+
             if (activeTool)
                 document.querySelector(`#${activeTool}`).classList.remove('selected')
             activeTool = e.target.id

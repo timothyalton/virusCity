@@ -11,8 +11,9 @@ function openNav() {
 function closeNav() {
     let sideNav = document.getElementById("mySideNav")
     sideNav.style.width = "0";
-    // console.log("clicked")
+    // console.log("clicked")Mar
 }
+
 
 form.addEventListener("submit", () => {
     prohibitedActions = []
@@ -31,6 +32,7 @@ form.addEventListener("submit", () => {
     if (shopping) {
         prohibitedActions.push("go shopping")
     }
+
     if (gym) {
         prohibitedActions.push("go to gym")
     }
@@ -38,4 +40,4 @@ form.addEventListener("submit", () => {
     eventLoop()
 
 
-})
+
