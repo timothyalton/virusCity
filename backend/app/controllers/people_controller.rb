@@ -17,8 +17,21 @@ class PeopleController < ApplicationController
     end
 
     def create 
+        buildings = Tile.all.filter do |tile|
+        tile.property > 53 || tile.property == 46 || tile.property == 47
+        end     
         person = Person.create(person_params)
+       4.times do 
+            Action.create({
+              time: Faker::Number.between(from: 0, to: 1440),
+              category: ["go to work","go to school","go shopping"][rand(3)],
+              tile: buildings[rand(buildings.length)],
+              person: person
+            })
+          end
+        
         render json: person 
+        
     end
 
     def edit
@@ -39,7 +52,7 @@ class PeopleController < ApplicationController
     private
 
     def person_params
-        params.require(:person).permit(:name, :health)
+        params.require(:person).permit(:name, :health,  :tile_id)
     end
 
     def find_person

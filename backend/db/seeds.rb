@@ -1,5 +1,5 @@
-Grid.destroy_all
-Tile.destroy_all
+#Grid.destroy_all
+#Tile.destroy_all
 Person.destroy_all
 Action.destroy_all
 
