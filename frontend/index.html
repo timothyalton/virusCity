@@ -17,23 +17,19 @@
     <meta name="Description" content="Isometric City Builder">
     <link rel="icon" href="favicon.png" sizes="256x256">
     <link rel="apple-touch-icon" href="favicon.png">
-    <title>IsoCity</title>
+    <title>VirusCity</title>
     <link rel="stylesheet" href="css/resetstyle.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
-
-
-
     <nav class="nav-main">
         <div onclick="openNav('mySideNav')" class="btn-toggle-nav"></div>
-        <h1 style="margin:auto">Welcome To Virus City!</h1>
-        <div>
-            <div id="time">Time:</div>
-            <div id="people-Infected">People Infected:</div>
-
+        <h1 style="margin: auto">Welcome To Virus City!</h1>
+        <div class="counter-border">
+            <p style="display:inline;" id="time">Time:</p>
+            <p style="display:inline;" id="people-Infected">People Infected:</p>
         </div>
     </nav>
 
@@ -49,13 +45,13 @@
         <h4 style="margin-left: 20%;">Quarintine:</h4>
         <form id="sim-var">
             <input style="color:#fff" type="checkbox" name="action1" value="">
-            <label for="action1">School</label><br>
+            <label for="action1">Close Schools</label><br>
             <input type="checkbox" name="action2" value="" />
-            <label for="action2">Work</label><br>
+            <label for="action2">Work from Home</label><br>
             <input type="checkbox" name="action3" value="" />
-            <label for="action3">Shopping</label><br>
+            <label for="action3">Close Stores</label><br>
             <input type="checkbox" name="action4" value="" />
-            <label for="action4">Gym</label><br>
+            <label for="action4">Close Gyms</label><br>
             <br/>
             <input style="margin-left: 0%;" class="myButton" id="start-simulation" type="submit" value="Run Simulation" />
             </br>
