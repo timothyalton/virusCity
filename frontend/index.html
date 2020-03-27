@@ -25,15 +25,19 @@
 <body>
 
 
+    <!-- <audio src="sound/walking.mp3" autoplay="autoplay" loop="loop"></audio> -->
 
 
     <nav class="nav-main">
         <div onclick="openNav('mySideNav')" class="btn-toggle-nav"></div>
         <h1 style="margin:auto">Welcome To Virus City!</h1>
         <div>
+            <audio id="audioPlayer">
+             <source src="sound/walking.mp3" type="audio/mp3">
+            </audio>
+
             <div id="time">Time:</div>
             <div id="people-Infected">People Infected:</div>
-
         </div>
     </nav>
 
@@ -46,26 +50,26 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav('mySideNav')">
 		&times;</a>
         <div id="form-border">
-        <h4 style="margin-left: 20%;">Quarintine:</h4>
-        <form id="sim-var">
-            <input style="color:#fff" type="checkbox" name="action1" value="">
-            <label for="action1">School</label><br>
-            <input type="checkbox" name="action2" value="" />
-            <label for="action2">Work</label><br>
-            <input type="checkbox" name="action3" value="" />
-            <label for="action3">Shopping</label><br>
-            <input type="checkbox" name="action4" value="" />
-            <label for="action4">Gym</label><br>
-            <br/>
-            <input style="margin-left: 0%;" class="myButton" id="start-simulation" type="submit" value="Run Simulation" />
-            </br>
-            <br/>
-            <button class="myButton" id="AddPerson"> AddPerson</button>
-            </br>
-            <br/>
-            <button style="margin-left: 7.5%;" class="myButton" id="Modifycity"> Modifycity</button>
-        </form>
-       
+            <h4 style="margin-left: 20%;">Quarintine:</h4>
+            <form id="sim-var">
+                <input style="color:#fff" type="checkbox" name="action1" value="">
+                <label for="action1">School</label><br>
+                <input type="checkbox" name="action2" value="" />
+                <label for="action2">Work</label><br>
+                <input type="checkbox" name="action3" value="" />
+                <label for="action3">Shopping</label><br>
+                <input type="checkbox" name="action4" value="" />
+                <label for="action4">Gym</label><br>
+                <br/>
+                <input style="margin-left: 0%;" class="myButton" id="start-simulation" type="submit" value="Run Simulation" />
+                </br>
+                <br/>
+                <button class="myButton" id="AddPerson"> AddPerson</button>
+                </br>
+                <br/>
+                <button style="margin-left: 7.5%;" class="myButton" id="Modifycity"> Modifycity</button>
+            </form>
+
         </div>
     </div>
 
