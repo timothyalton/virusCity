@@ -40,11 +40,15 @@ tools.style.width = "0"
 
 
 
-
+let audio = document.getElementById('audioPlayer')
 let startbutton = document.querySelector("#start-simulation")
 startbutton.addEventListener("click", () => {
+    if (!running) {
+        audio.play()
+    } else { audio.pause() }
     startSimulation();
     startbutton.value = running ? "Stop Simulation" : "Start Simulation"
+
 })
 
 let modifyButton = document.getElementById("Modifycity")
@@ -70,6 +74,8 @@ addPersonButton.addEventListener("click", () => {
 
     addPersonEnabled = !addPersonEnabled
 })
+
+
 
 
 
