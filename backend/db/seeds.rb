@@ -31,7 +31,7 @@ buildings = Tile.all.select do |tile|
 end
 
 
-50.times do 
+150.times do 
     Person.create({
       name: Faker::Name.name,
       health: "healthy",
@@ -39,7 +39,7 @@ end
     })
   end
 
-  5.times do 
+  20.times do 
     Person.create({
       name: Faker::Name.name,
       health: "infected",
