@@ -50,6 +50,12 @@ h1 {
     src: url('../fonts/DoubleFeature20.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'virusfont2';
+    src: url('../fonts/Run! Demo.otf')
+    format('opentype');
+}
+
 @media only screen and (max-width: 1700px) {
     #tools {
         width: 440px;

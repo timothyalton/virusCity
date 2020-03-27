@@ -1,6 +1,6 @@
 // setup and configuration
 // size of the grid
-let size = 0
+let size = 50
 
 // size of the screen
 const width = window.innerWidth

@@ -1,5 +1,5 @@
-#Grid.destroy_all
-#Tile.destroy_all
+# Grid.destroy_all
+# Tile.destroy_all
 Person.destroy_all
 Action.destroy_all
 
@@ -13,24 +13,25 @@ Action.destroy_all
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-g1 = Grid.create(size: 20)
-buildings = []
+# g1 = Grid.create(size: 50)
+# buildings = []
 
-(0..g1.size-1).each do |row| 
-    (0..g1.size-1).each do |col|
-      if(rand(100)<20)
-        buildings << Tile.create(x:row ,y:col, property: 54 + rand(18), grid_id: g1.id)
-      else
-        Tile.create(x:row ,y:col, property: 0, grid_id: g1.id)
-      end
-    end 
+# (0..g1.size-1).each do |row| 
+#     (0..g1.size-1).each do |col|
+#       if(rand(100)<20)
+#         buildings << Tile.create(x:row ,y:col, property: 54 + rand(18), grid_id: g1.id)
+#       else
+#         Tile.create(x:row ,y:col, property: 0, grid_id: g1.id)
+#       end
+#     end 
+# end
+
+buildings = Tile.all.select do |tile| 
+  tile.property > 53 || tile.property == 46 || tile.property == 47
 end
 
 
-
-
-
-30.times do 
+50.times do 
     Person.create({
       name: Faker::Name.name,
       health: "healthy",

@@ -37,8 +37,3 @@ form.addEventListener("submit", () => {
         prohibitedActions.push("go to gym")
     }
 })
-
-
-function displayTools() {
-
-}
