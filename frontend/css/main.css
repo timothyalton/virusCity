@@ -52,7 +52,9 @@ h1 {
 
 @font-face {
     font-family: 'virusfont2';
-    src: url('../fonts/Run! Demo.otf') format('opentype');
+    src: url('../fonts/NightOfTerror.ttf')
+    format('truetype');
+
 }
 
 @media only screen and (max-width: 1700px) {
@@ -155,7 +157,7 @@ h1 {
     opacity: 0.8;
 }
 
-.sideNav a {
+.sideNav a {<<<<<<< mitchell-alton
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -175,7 +177,7 @@ h1 {
     font-size: 36px;
     margin-left: 50px;
 }
-
+/* 
 .nav-main div {
     float: left;
     color: #f2f2f2;
@@ -183,7 +185,7 @@ h1 {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-}
+} */
 
 #sim-var {
     margin-left: 25%;
@@ -217,6 +219,24 @@ h1 {
     top: 1px;
 }
 
+.counter-border {
+    height: 40px;
+    /* display: inline; */
+	/* background:linear-gradient(to bottom, #111 5%, #F98F39 100%); */
+    background-color: #F98F39;
+    /* white-space: nowrap; */
+    color: #111;
+    text-shadow: 2px 2px 8px #FFF;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    /* border-style: solid; */
+    /* border-color: #F98F39; */
+    box-shadow: -10px 10px 10px #111; 
+    
+
+}
+
 #form-border {
     margin-left: 7%;
     display: inline-block;
@@ -226,4 +246,12 @@ h1 {
     border-color: #111;
     box-shadow: 5px 5px 10px #F98F39;
     padding: 5px 5px;
+}
+
+#time {
+    font-family: 'virusfont2', sans-serif;
+}
+
+#people-Infected {
+    font-family: 'virusfont2', sans-serif;
 }

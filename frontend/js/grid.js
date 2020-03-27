@@ -674,8 +674,8 @@ let divTime = document.getElementById('time')
 let divPeople = document.getElementById("people-Infected")
 
 function displayCounter() {
-    divTime.innerText = `Time : ${time}`
-    divPeople.innerText = `People infected : ${numberofinfected()}`
+    divTime.innerText = `Time: ${time}`
+    divPeople.innerText = `People infected: ${numberofinfected()}`
 
 }
 
