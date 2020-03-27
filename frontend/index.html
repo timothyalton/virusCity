@@ -28,7 +28,7 @@
 
 
     <nav class="nav-main">
-        <div onclick="openNav()" class="btn-toggle-nav"></div>
+        <div onclick="openNav('mySideNav')" class="btn-toggle-nav"></div>
         <h1 style="margin:auto">Welcome To Virus City!</h1>
         <div>
             <div id="time">Time:</div>
@@ -37,8 +37,13 @@
         </div>
     </nav>
 
+
+    <div id="tools" class="sideNav" style="background-color: white">
+    </div>
+
+
     <div id="mySideNav" class="sideNav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav('mySideNav')">
 		&times;</a>
 
         <h4>Quarintine:</h4>
@@ -53,6 +58,11 @@
             <label for="action4">Gym</label><br>
             <input id="start-simulation" type="submit" value="Run Simulation" />
         </form>
+        </br>
+        <button id="AddPerson"> AddPerson</button>
+        </br>
+        <button id="Modifycity"> Modifycity</button>
+
     </div>
 
 
@@ -61,7 +71,6 @@
 
 
     <section id="main">
-        <div id="tools"></div>
         <div id="area">
             <canvas id="bg"></canvas>
             <canvas id="fg"></canvas>

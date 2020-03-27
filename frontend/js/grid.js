@@ -27,6 +27,10 @@ let zoom = 1.0
 let tiles = []
 let people = []
 
+let modifyEnabled = false
+let addPersonEnabled = false
+
+
 function loadGrid() {
     fetch('http://localhost:3000/grids/1')
         .then(res => res.json())
@@ -91,9 +95,14 @@ function mouseClick(e) {
     const pos = convertScreenToGrid(e.offsetX, e.offsetY)
     if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size) {
 
-        tiles[pos.x][pos.y].property = (e.which === 3) ? 0 : tool
-            // redraw the entire grid
-        setTile(tiles[pos.x][pos.y])
+        if (modifyEnabled) {
+            tiles[pos.x][pos.y].property = (e.which === 3) ? 0 : tool
+                // redraw the entire grid
+            setTile(tiles[pos.x][pos.y])
+        } else if (addPersonEnabled) {
+            addPerson(pos.x, pos.y)
+        }
+
         drawGrid()
         clearSelection()
             // highlightPath(tiles[0][0], findPath(tiles[0][0], tiles[pos.x][pos.y]))
@@ -206,6 +215,7 @@ function convertGridToScreen(x, y) {
 
 
 function drawPerson(person) {
+    if (!person.tile) return 0
     let pos = convertGridToScreen(person.tile.x + 1 / 2, person.tile.y + 1 / 2)
     let radius = 10 * zoom
     bg.save()
@@ -630,6 +640,25 @@ function goToTile(person, destination) {
     // for (let i = 0; i < Math.abs(y); i++) {
     //     person.path.push(tiles[person.tile.x][person.tile.y + i * Math.sign(y)])
     // }
+
+}
+
+
+function addPerson(x, y) {
+    fetch(`http://localhost:3000/people/`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+                name: "person",
+                health: "healthy",
+                tile_id: tiles[x][y].id
+            })
+        })
+        .then(res => res.json())
+        .then(person => {
+            people.push(person)
+            drawGrid()
+        })
 
 }
 
