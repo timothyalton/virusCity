@@ -7,7 +7,11 @@ fgCanvas.addEventListener('contextmenu', e => e.preventDefault())
 fgCanvas.addEventListener('click', mouseClick)
 document.addEventListener('keydown', scroll)
 
-///////////// display tool section
+///////////// create tool section
+
+modifyEnabled = false
+
+
 tools = document.querySelector('#tools')
     // left bar
 
@@ -32,6 +36,10 @@ for (let i = 0; i < texHeight; i++) {
         tools.appendChild(div)
     }
 }
+tools.style.width = "0"
+
+
+
 
 let startbutton = document.querySelector("#start-simulation")
 startbutton.addEventListener("click", () => {
@@ -39,20 +47,32 @@ startbutton.addEventListener("click", () => {
     startbutton.value = running ? "Stop Simulation" : "Start Simulation"
 })
 
+let modifyButton = document.getElementById("Modifycity")
+modifyButton.addEventListener("click", () => {
+    closeNav("mySideNav")
+    if (modifyEnabled)
+        closeNav("tools")
+    else
+        openNav("tools")
+    modifyEnabled = !modifyEnabled
+})
 
 
 
-// callback  for click: set the selected tile at the click position
-function click2(e) {
-    const pos = convertScreenToGrid(e.offsetX, e.offsetY)
-    if (pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size) {
-        tiles[pos.x][pos.y].property = (e.which === 3) ? 0 : tool[0] + tool[1] * 12
-            // redraw the entire grid
-        setTile(tiles[pos.x][pos.y])
-        drawGrid()
-        clearSelection()
-    }
-}
+
+
+
+
+
+let addPersonButton = document.getElementById("AddPerson")
+addPersonButton.addEventListener("click", () => {
+    closeNav("mySideNav")
+
+    addPersonEnabled = !addPersonEnabled
+})
+
+
+
 
 function scroll(e) {
     switch (e.keyCode) {

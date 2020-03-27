@@ -2,14 +2,14 @@ const form = document.querySelector("form#sim-var")
 
 
 
-function openNav() {
-    let sideNav = document.getElementById("mySideNav")
-    sideNav.style.width = "250px";
+function openNav(nav) {
+    let sideNav = document.getElementById(nav)
+    sideNav.style.width = "300px";
     // console.log("clicked")
 }
 
-function closeNav() {
-    let sideNav = document.getElementById("mySideNav")
+function closeNav(nav) {
+    let sideNav = document.getElementById(nav)
     sideNav.style.width = "0";
     // console.log("clicked")Mar
 }
