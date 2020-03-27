@@ -45,8 +45,8 @@
     <div id="mySideNav" class="sideNav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav('mySideNav')">
 		&times;</a>
-
-        <h4>Quarintine:</h4>
+        <div id="form-border">
+        <h4 style="margin-left: 20%;">Quarintine:</h4>
         <form id="sim-var">
             <input style="color:#fff" type="checkbox" name="action1" value="">
             <label for="action1">School</label><br>
@@ -56,13 +56,17 @@
             <label for="action3">Shopping</label><br>
             <input type="checkbox" name="action4" value="" />
             <label for="action4">Gym</label><br>
-            <input id="start-simulation" type="submit" value="Run Simulation" />
+            <br/>
+            <input style="margin-left: 0%;" class="myButton" id="start-simulation" type="submit" value="Run Simulation" />
+            </br>
+            <br/>
+            <button class="myButton" id="AddPerson"> AddPerson</button>
+            </br>
+            <br/>
+            <button style="margin-left: 7.5%;" class="myButton" id="Modifycity"> Modifycity</button>
         </form>
-        </br>
-        <button id="AddPerson"> AddPerson</button>
-        </br>
-        <button id="Modifycity"> Modifycity</button>
-
+       
+        </div>
     </div>
 
 
